@@ -398,7 +398,7 @@
    && $("input[name='userTypeVal']:checked").val() != null && $("input[name='userTypeVal']:checked").val() != " " 
    ){
       $.ajax({
-             type: 'POST',
+             type: 'GET',
              url: 'https://www.mohzary.com/bearthworld/re.php?callback=response',
              data: {fname:$(".fNameVal").val(), lname: $(".lNameVal").val(),phone:$(".phoneVal").val(), email:$(".emailVal").val(), password:$(".passwordVal").val(),address:$(".addressVal").val(),city: $(".cityVal").val(),state:$(".stateVal").val(), zipcode:$(".zipVal").val(),fbook:$(".fbVal").val(), twitter:$(".twitterVal").val(), usertype:$("input[name='userTypeVal']:checked").val()},
              dataType: 'jsonp',
@@ -423,7 +423,7 @@
              },
              error: function(xhr, type){
  
-               console.log("There is an error!" + type);     
+               console.log("There is an error!" + type.success);     
    
              } 
            }) 

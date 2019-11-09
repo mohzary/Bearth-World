@@ -397,9 +397,9 @@
    && $(".zipVal").val() != null && $(".zipVal").val() !== " " 
    && $("input[name='userTypeVal']:checked").val() != null && $("input[name='userTypeVal']:checked").val() != " " 
    ){
-    /*  $.ajax({
+      $.ajax({
              type: 'POST',
-             url: 'https://www.mohzary.com/umkcsps/register.php?callback=response',
+             url: 'https://www.mohzary.com/bearthworld/re.php?callback=response',
              data: {fname:$(".fNameVal").val(), lname: $(".lNameVal").val(),phone:$(".phoneVal").val(), email:$(".emailVal").val(), password:$(".passwordVal").val(),address:$(".addressVal").val(),city: $(".cityVal").val(),state:$(".stateVal").val(), zipcode:$(".zipVal").val(),fbook:$(".fbVal").val(), twitter:$(".twitterVal").val(), usertype:$("input[name='userTypeVal']:checked").val()},
              dataType: 'jsonp',
              timeout: 1000,
@@ -426,7 +426,7 @@
                console.log("There is an error!" + type);     
    
              } 
-           }) */
+           }) 
      }else{
 
      window.alert("Please make sure to fill all data in the form.");

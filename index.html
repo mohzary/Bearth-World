@@ -278,51 +278,99 @@
          
        </div>
     </div>
-       <!-- parking list page 4 -->
-    <div class="app-page" data-page="page4">
-      <div class="app-topbar">
-        <div class="app-title">Welcome</div>
-      </div>
+       <!-- Doula and Maidwife  page 4 -->
+    <div class="app-page" data-page="page4" id="doula-maidwife">
       <div class="app-content">
-    
-        <p class="app-section">My patients</p>
-    
+
+        <div class="app-topbar red">
+          <div class="app-title">Home Page</div>
+        </div>
+        <br>
+        <br>
+       <div class="app-section">
+          <p>My patients</p>
+       </div>
+          
         <div  class="app-section">
-          <ul class="app-list">
-    
-            <label>Animals</label>
+          
+          <ul class="app-list" >
+          
+            <label>List of current patients: </label>
             <li>Dogs</li>
             <li>Cats</li>
             <li>Apples</li>
             <li>Oranges</li>
           </ul>
         </div>
-    
-        <p class="app-section">My Appointments</p>
-    
+        <div class="app-section">
+            <p>My Appointments</p>
+        </div>
+            
         <div  class="app-section">
-    
-          <ul class="app-list">
-            <label>Animals</label>
-            <li>Dogs</li>
-            <li>Cats</li>
-            <li>Apples</li>
-            <li>Oranges</li>
+            
+          <ul class="app-list" id="#appointments">
+            
+            
+            
           </ul>
         </div>
-     
+        <div class="app-section">
+          <div class="app-button" id="registerBtn" data-target="page5">Add Services</div>
+        </div>
+          
+
+      </div> 
     </div>
    
-    <!-- parking reservation page  5 -->
+    <!-- Doula Midwife add service page  5 -->
     <div class="app-page" data-page="page5">
-            <div class="app-content">
-                <div class="app-topbar blue">
-                    <div class="app-button left blue" id="backBtn"><img src="images/back.png" id="topbar-btn"></div>
-                    <div class="app-title" Id="topbar-title">Reserve Parking</div>
-                </div>
-              
-            </div>
+      <div class="app-content">
+        <div class="app-topbar red">
+          <div class="app-button left red" data-back data-autotitle></div>
+          <div class="app-title">Add Services</div>
+        </div>
+        <br>
+        <br>
+        <div class="app-section" >
+          <p>Service Name</p>
+          <input placeholder="Service Name"  id="form-input" class="app-input servicename">
+        </div>
+        <div class="app-section">
+          <p>Please select a date</p>
+        </div>
+        <div class="app-section" >
+      
+          <input type="date" id="form-input"  class="app-input data">
+      
+        </div>
+        <div class="app-section">
+          <p>Please select time</p>
+        </div>
+        <div class="app-section" >
+      
+          <p>From:</p><input type="time" id="form-input" class="app-input from" value="12:00">
+          <p>To:</p><input type="time" id="form-input" class="app-input to" value="12:00">
+      
+        </div>
+      
+          <div class="app-section">
+            <p>Please select type of service</p>
           </div>
+      
+          <div class="app-section">
+      
+            <input type="radio" name="ToS" id="C" style="margin-top: 20px" value="c"> Course <br><br>
+            <input type="radio" name="ToS" id="A" style="margin-bottom: 20px" value="a"> Appointment<br>
+      
+          </div>
+          <div class="app-section ">
+            <div class="app-button send-service" id="registerBtn" >Make a service</div>
+          </div>
+
+                
+              
+      </div>
+    </div>
 
     <!-- JavaScript Code -->
     <script src="zepto.js"></script>
@@ -363,17 +411,35 @@
                   context: $('body'),
                   success: function(data){
                     if(data.success.length === 12 ){
-                      if (typeof localStorage !== 'undefined') {
-/*                         localStorage.setItem("user-id", data.success[0]);
-                        localStorage.setItem("user-fname", data.success[1]);
-                        localStorage.setItem("user-lname", data.success[2]);
-                        localStorage.setItem("user-status", data.success[3]);
-                        localStorage.setItem("user-campus", data.success[4]);
-                        localStorage.setItem("login-status", 1); */
+                      if (typeof localStorage != 'undefined') {
+                        
+                        localStorage.setItem("user-email", data.success[0]);
+                        localStorage.setItem("user-password", data.success[1]);
+                        localStorage.setItem("user-fname", data.success[2]);
+                        localStorage.setItem("user-lname", data.success[3]);
+                        localStorage.setItem("user-address", data.success[4]);
+                        localStorage.setItem("user-city", data.success[5]);
+                        localStorage.setItem("user-state", data.success[6]);
+                        localStorage.setItem("user-zipcode", data.success[7]);
+                        localStorage.setItem("user-facebook", data.success[8]);
+                        localStorage.setItem("user-twitter", data.success[9]);
+                        localStorage.setItem("user-usertype", data.success[10]);
+                        localStorage.setItem("user-phone", data.success[11]);
+                        localStorage.setItem("login-status", 1);
 
                        
-                       console.log(data.success)
-                       App.load('page4');
+                       if(localStorage.getItem("user-usertype")=="d"){
+                        App.load('page4');
+
+                       }else if(localStorage.getItem("user-usertype")=="m"){
+                        App.load('page4');
+
+                       }else if(localStorage.getItem("user-usertype") == "c"){
+                        App.load('page6');
+
+                       }
+
+                       
                       }
 
 
@@ -465,106 +531,34 @@
  });
 
       App.controller('page4', function (page) {
+        // to get Doula maid wife appts. from server and dispaly them in app
+        $("#doula-maidwife").ready(function() {
+          if (typeof localStorage != 'undefined') {
 
-        if (typeof localStorage !== 'undefined') {
-          $(page).find("#topbar-title").html(localStorage.getItem("user-campus"));
-          console.log(localStorage.getItem("login-status"));
-          console.log(localStorage.getItem("user-fname"));
-          console.log(localStorage.getItem("user-lname"));
-          console.log(localStorage.getItem("user-status"));
-          console.log(localStorage.getItem("user-campus"));
-          console.log(localStorage.getItem("user-id"));
-          
-          
-
-        }
-    
-        $("#parking-lots-list").ready(function() {
-          if (typeof localStorage !== 'undefined') {
-            if(localStorage.getItem("user-status") == "student" || localStorage.getItem("user-status") == "staff"){
-              $(page).find("#parking").hide();
-            }
-            $.ajax({
-                  type: 'GET',
-                  url: 'https://www.mohzary.com/umkcsps/lots.php?callback=response',
-                  data: { campus: localStorage.getItem("user-campus"), permit: localStorage.getItem("user-status")},
-                  dataType: 'jsonp',
-                  timeout: 1000,
-                  context: $('body'),
-                  success: function(data){
-                    console.log("Your Data is : " + data.success);  
-                    $(page).find("#parking-lots-list").html(data.success);
-                  },
-                  error: function(xhr, type){
-      
-                    console.log("There is an error!" + type);     
-        
-                  } 
-                })
-
-
-
+            if(localStorage.getItem("user-email") != " " && localStorage.getItem("user-email") != null){
+              $.ajax({
+                type: 'GET',
+                url: 'https://www.mohzary.com/bearthworld/appts.php?callback=response',
+                data: {email: localStorage.getItem("user-email")},
+                dataType: 'jsonp',
+                timeout: 1000,
+                context: $('body'),
+                success: function(data){
+                  console.log(data.success);
+                },
+                error: function(xhr, type){
+ 
+                  console.log("There is an error!" + type.success);     
+                } 
+              })
+            }  
           }
-
-
-
         });
+        //// End to get Doula maid wife appts. from server and dispaly them in app
 
-
-        $(page).find('#logoutBtn').clickable().on('click', function () { 
-          if (typeof localStorage !== 'undefined') {
-              localStorage.setItem("user-id", "");
-              localStorage.setItem("user-fname", "");
-              localStorage.setItem("user-lname", "");
-              localStorage.setItem("user-status", "");
-              localStorage.setItem("user-campus", "");
-              localStorage.setItem("login-status", 0);
-              App.load('home');
-          }
-
-        });
-        
-        $(page).find('#refreshBtn').clickable().on('click', function () { 
-
-          if (typeof localStorage !== 'undefined') {
-            if(localStorage.getItem("user-status") == "student" || localStorage.getItem("user-status") == "staff"){
-              $(page).find("#parking").hide();
-            }
-            $.ajax({
-                  type: 'GET',
-                  url: 'https://www.mohzary.com/umkcsps/lots.php?callback=response',
-                  data: { campus: localStorage.getItem("user-campus"), permit: localStorage.getItem("user-status")},
-                  dataType: 'jsonp',
-                  timeout: 1000,
-                  context: $('body'),
-                  success: function(data){
-                    console.log("referesh is done"); 
-                    console.log("Your Data is : " + data.success); 
-                    $(page).find("#parking-lots-list").html(data.success);
-                  },
-                  error: function(xhr, type){
-      
-                    console.log("There is an error!" + type);     
-        
-                  } 
-                })
-
-
-
-          }
-
-        });
-
-        $(page).find('#parking').clickable().on('click', function () { 
-
-          App.load('page5');
-
-        });
-        
 
       });
 
-      
       App.controller('page5', function (page) {
         $(page).find('#backBtn').clickable().on('click', function () { 
 

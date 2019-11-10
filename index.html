@@ -306,13 +306,13 @@
             <p>My Appointments</p>
         </div>
             
-        <div  class="app-section">
+        <div  class="app-section" id="my-appointments">
             
-          <ul class="app-list" id="#appointments">
+          
             
             
             
-          </ul>
+          
         </div>
         <div class="app-section">
           <div class="app-button" id="registerBtn" data-target="page5">Add Services</div>
@@ -545,6 +545,7 @@
                 context: $('body'),
                 success: function(data){
                   console.log(data.success);
+                  $(page).find("#my-appointments").html(data.success);
                 },
                 error: function(xhr, type){
  

@@ -280,18 +280,37 @@
     </div>
        <!-- parking list page 4 -->
     <div class="app-page" data-page="page4">
-      <div class="app-content">
-        <div class="app-topbar blue">
-          <div class="app-button left blue" id="refreshBtn"><img src="images/refresh.png" id="topbar-btn"></div>
-          <div class="app-title" Id="topbar-title"></div>
-          <div class="app-button right blue" id="logoutBtn"><img src="images/logout.png" id="topbar-btn"></div>
-        </div>
-        <ul class="app-list" id="parking-lots-list">
-            
-        </ul>
-
-        <div class="app-button blue" id="parking"><img src="images/parking.png" id="parking-btn"></div>
+      <div class="app-topbar">
+        <div class="app-title">Welcome</div>
       </div>
+      <div class="app-content">
+    
+        <p class="app-section">My patients</p>
+    
+        <div  class="app-section">
+          <ul class="app-list">
+    
+            <label>Animals</label>
+            <li>Dogs</li>
+            <li>Cats</li>
+            <li>Apples</li>
+            <li>Oranges</li>
+          </ul>
+        </div>
+    
+        <p class="app-section">My Appointments</p>
+    
+        <div  class="app-section">
+    
+          <ul class="app-list">
+            <label>Animals</label>
+            <li>Dogs</li>
+            <li>Cats</li>
+            <li>Apples</li>
+            <li>Oranges</li>
+          </ul>
+        </div>
+     
     </div>
    
     <!-- parking reservation page  5 -->
@@ -334,34 +353,33 @@
         
             $(page).find('#loginBtn').clickable().on('click', function () {
               if($(".emailVal").val() != null && $(".emailVal").val() != " " && $(".passwordVal").val() != null && $(".passwordVal").val() != " "){
-                console.log("User login ok");
-              }else{
-                console.log("please enter all information");
-              }
-            
-                /* $.ajax({
+
+                $.ajax({
                   type: 'GET',
-                  url: 'https://www.mohzary.com/umkcsps/login.php?callback=response',
-                  data: { username: $(".userNameVal").val(), password: $(".passwordVal").val()},
+                  url: 'https://www.mohzary.com/bearthworld/login.php?callback=response',
+                  data: { username: $(".emailVal").val(), password: $(".passwordVal").val()},
                   dataType: 'jsonp',
                   timeout: 1000,
                   context: $('body'),
                   success: function(data){
-                    if(data.success.length === 5 ){
+                    if(data.success.length === 12 ){
                       if (typeof localStorage !== 'undefined') {
-                        localStorage.setItem("user-id", data.success[0]);
+/*                         localStorage.setItem("user-id", data.success[0]);
                         localStorage.setItem("user-fname", data.success[1]);
                         localStorage.setItem("user-lname", data.success[2]);
                         localStorage.setItem("user-status", data.success[3]);
                         localStorage.setItem("user-campus", data.success[4]);
-                        localStorage.setItem("login-status", 1);
-                        App.load('page4');
+                        localStorage.setItem("login-status", 1); */
+
+                       
+                       console.log(data.success)
+                       App.load('page4');
                       }
 
 
                     }
               
-                    
+
         
         
                   },
@@ -370,7 +388,12 @@
                     console.log("There is an error!" + type);     
         
                   } 
-                }) */
+                }) 
+              }else{
+                console.log("please enter all information");
+              }
+            
+
 
               
               });
@@ -400,7 +423,7 @@
       $.ajax({
              type: 'GET',
              url: 'https://www.mohzary.com/bearthworld/re.php?callback=response',
-             data: {fname:$(".fNameVal").val(), lname: $(".lNameVal").val(),phone:$(".phoneVal").val(), email:$(".emailVal").val(), password:$(".passwordVal").val(),address:$(".addressVal").val(),city: $(".cityVal").val(),state:$(".stateVal").val(), zipcode:$(".zipVal").val(),fbook:$(".fbVal").val(), twitter:$(".twitterVal").val(), usertype:$("input[name='userTypeVal']:checked").val()},
+             data: {fname: $(".fNameVal").val(),lname: $(".lNameVal").val(), phone:$(".phoneVal").val(), email:$(".emailVal").val(), password:$(".passwordVal").val(),address:$(".addressVal").val(),city: $(".cityVal").val(),state:$(".stateVal").val(), zipcode:$(".zipVal").val(),fbook:$(".fbVal").val(), twitter:$(".twitterVal").val(), usertype:$("input[name='userTypeVal']:checked").val()},
              dataType: 'jsonp',
              timeout: 1000,
              context: $('body'),

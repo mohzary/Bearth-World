@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div.table-responsive-md{font-size: 11px}
+        .row-centered {
+            text-align:center;
+        }
+        .col-centered {
+            display:inline-block;
+            float:none;
+            /* reset the text-align */
+            text-align:left;
+            /* inline-block space fix */
+            margin-right:-4px;
+        }
+    </style>
+    <title>Search Page to sign up for courses and schedule appointments</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+    <h1>Appointment Schedule & Course Signup Screen</h1>
+
+
+
+
+
+
+</div>
+
+
+<div class="container">
+
+    <p>To find a doula within your zip code please select only <b>Doula</b>.
+     For midwife please select only <b>MidWife</b>.
+    To select both types of staff select only <b>Both</b></p>
+
+    <div class="form-check-inline">
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="optradio">Doula
+        </label>
+    </div>
+    <div class="form-check-inline">
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="optradio">MidWife
+        </label>
+    </div>
+    <div class="form-check-inline disabled">
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="optradio" disabled>Both
+        </label>
+    </div>
+
+
+    <form class="form-inline" action="/action_page.php">
+        <label for="zip" class="mr-sm-2">
+        <input type="number" class="form-control mb-2 mr-sm-2" name="zipcode" placeholder="Enter Zip Code" id="zip">
+        </label>
+
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

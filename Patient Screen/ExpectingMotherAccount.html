@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div.table-responsive-md{font-size: 11px}
+    .row-centered {
+        text-align:center;
+    }
+    .col-centered {
+        display:inline-block;
+        float:none;
+        /* reset the text-align */
+        text-align:left;
+        /* inline-block space fix */
+        margin-right:-4px;
+    }
+    </style>
+    <title>Expecting Mother Account</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        var h1 = document.getElementsByTagName('h3')[0],
+            start = document.getElementById('start'),
+            stop = document.getElementById('stop'),
+            clear = document.getElementById('clear'),
+            seconds = 0, minutes = 0, hours = 0,
+            t;
+
+        function add() {
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes >= 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+
+            h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+            timer();
+        }
+        function timer() {
+            t = setTimeout(add, 1000);
+        }
+        timer();
+
+
+        /* Start button */
+        start.onclick = timer;
+
+        /* Stop button */
+        stop.onclick = function() {
+            clearTimeout(t);
+        }
+
+        /* Clear button */
+        clear.onclick = function() {
+            h1.textContent = "00:00:00";
+            seconds = 0; minutes = 0; hours = 0;
+        }
+
+    </script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+    <h1>Welcome Jane Doe</h1>
+
+    <p>Your Expected Delivery Due Date is <b>Dec 27, 2019!</b></p>
+
+
+
+
+
+</div>
+
+
+<div class="container">
+
+    <p>Click the <b>Search</b> button to find & connect with a Doula and Midwife in your area to schedule appointments and sign up for courses</p>
+    <div class="row well row-centered">
+        <div class="col-md-offset-3 col-md-6">
+            <h2 class="btn btn-primary btn-lg center-block" onclick="location.href='Search.html' ">SEARCH</h2>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row">
+
+        <div class="w3-container">
+            <p></p>
+            <p class="w3-small"><i>***Scroll down the screen to see a list of your courses, appointments, your Doula & Midwife,
+                time and track your contractions***</i></p>
+        </div>
+
+        <div class="col-sm-4">
+            <h4>My Courses</h4>
+            <ul class = "list group">
+                <li class="list-group-item">Introduction to Pre-Natal Care</li>
+
+            </ul>
+        </div>
+
+    <h4>My Appointments</h4>
+    <div class="table-responsive-md">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Appointment Date</th>
+            <th>Course/Service</th>
+            <th>Staff Name & Contact</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Monday Nov 15, 2019 10:00 to 11:00 am</td>
+            <td>Initial Consultation</td>
+            <td>Melinda Jackson <p>816-555-6667</p></td>
+        </tr>
+
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-sm-4">
+            <h4>My Doula</h4>
+            <ul>
+                <li>Ms. Tiffany Johnson - (816)444-9980</li>
+
+            </ul>
+        </div>
+
+        <div class="col-sm-4">
+            <h4>My Midwife</h4>
+            <ul>
+                <li>Mrs. Henderson Jackson - (816)342-5600</li>
+
+            </ul>
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+
+    <div class="col-sm-4">
+        <h4>Contractions Timer and History</h4>
+        <p>***Once your contractions gets closer this app will automatically send an alert to your Midwife***</p>
+
+        <p><i>Click on the Start Contractions button each time your contractions begin. Click Stop button when your contractions ends</i></p>
+
+        <div class="row well row-centered">
+            <div class="col-md-offset-3 col-md-6">
+                <h3 class="col-centered row-centered"><time>00:00:00</time></h3>
+
+        
+
+        <div class="row well row-centered">
+            <div class="col-md-offset-5 col-md-6">
+                <h2 class="btn id='test' btn-danger btn-lg center-block">START</h2>
+
+            </div>
+
+            <div class="col-md-offset-5 col-md-6">
+                <h2 class="btn id='stop' btn-info btn-lg center-block">STOP</h2>
+
+            </div>
+
+            <div class="col-md-offset-5 col-md-6">
+                <h2 class="btn id='clear' btn-secondary btn-lg center-block">RESET</h2>
+
+            </div>
+
+
+        </div>
+
+
+        <h5>Contractions History</h5>
+        <div class="table-responsive-md">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Duration</th>
+                    <th>Interval/th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Monday Nov 19, 2019 10:15 am</td>
+                    <td>2 Minutes</td>
+                    <td>5 Minutes</td>
+                </tr>
+
+                <tr>
+                    <td>Monday Nov 19, 2019 10:17 am</td>
+                    <td>1.5 Minutes</td>
+                    <td>5 Minutes</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

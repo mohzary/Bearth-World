@@ -64,25 +64,38 @@
 
 
     <div class="app-section" >
-      <input placeholder="Service Name" class="app-input">
+      <input placeholder="Service Name"  id="ServiceName" class="app-input">
 
+    </div>
+    <div class="app-section">
+      <p>Please select a date</p>
     </div>
     <div class="app-section" >
 
-      <input type="date" placeholder="Service Name" class="app-input">
+      <input type="date" id="Date"  class="app-input">
 
     </div>
     <div class="app-section">
-      <p>Please select the type of service:</p>
+      <p>Please select time</p>
+    </div>
+    <div class="app-section" >
+
+      From: <input type="time"  id="From" class="app-input" value="12:00">
+      To:   <input type="time" id="To" class="app-input" value="12:00">
+
+    </div>
+
+    <div class="app-section">
+      <p>Please select type of service</p>
     </div>
 
     <div class="app-section">
 
-      <input type="radio" name="ToS" style="margin-top: 20px" value="C"> Course <br><br>
-      <input type="radio" name="ToS" style="margin-bottom: 20px" value="A"> Appointment<br>
+      <input type="radio" name="ToS" id="C" style="margin-top: 20px" value="C"> Course <br><br>
+      <input type="radio" name="ToS" id="A" style="margin-bottom: 20px" value="A"> Appointment<br>
 
     </div>
-    <div class="app-section "><div class="app-button" data-target="page3" >Make a service</div>
+    <div class="app-section "><div class="app-button" >Make a service</div>
 
 
     </div>

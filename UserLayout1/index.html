@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-
+<html>
 <head>
   <title>My App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-   <link rel="stylesheet" href="app.min.css">
-
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+  <link rel="stylesheet" href="app.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style>
-
+    /* TODO */
   </style>
 </head>
 
@@ -45,7 +37,7 @@
     </div>
 
 
-    <div class="app-button app-section" onclick="">Search for Services</div>
+    <div class="app-button app-section" data-target="page2" >Search for Services</div>
 
 
 
@@ -124,26 +116,24 @@
         <h3 class="app-section "><time style="text-align: center; ">00:00:00</time></h3>
 
 
-        <div class="app-section">
           <div class="">
-            <div class="">
+            <div class="app-section">
               <h2 class="app-button">START</h2>
 
             </div>
 
-            <div class="">
+            <div class="app-section">
               <h2 class="app-button">STOP</h2>
 
             </div>
 
-            <div class="">
+            <div class="app-section">
               <h2 class="app-button">RESET</h2>
 
             </div>
 
 
           </div>
-        </div>
 
         <div class="app-section">
           <h5>Contractions History</h5>
@@ -180,10 +170,53 @@
 
   </div>
 
-</div>
-</div>
+
+<div class="app-page" data-page="page2">
+  <div class="app-topbar dark-blue">
+    <div class="app-button left" data-back data-autotitle></div>
+    <div class="app-title">Page 2</div>
+  </div>
+  <div class="app-content">
 
 
+
+    <div class="app-section">
+      <h1>Appointment Schedule & Course Signup Screen</h1>
+
+    </div>
+
+    <div class="app-section">
+
+      <p>To find a doula within your zip code please select only <b>Doula</b>.
+        For midwife please select only <b>MidWife</b>.
+        To select both types of staff select only <b>Both</b></p>
+    </div>
+    <div class="app-section">
+      <label class="">
+        <input type="radio" class="" name="optradio"> Doula
+      </label>
+
+      <label class="">
+        <input type="radio" class="" name="optradio"> MidWife
+      </label>
+      <label class="app-section ">
+        <input type="radio" class="" name="optradio"> Both
+      </label>
+    </div>
+    <div class="app-section">
+      <input class="app-input no-icon-android" type="search"placeholder="Enter Zip Code">
+
+    </div>
+
+    <div class="app-section">
+      <div class="app-button" >Search</div>
+    </div>
+
+
+
+  </div>
+</div>
+</div>
 
 <script src="zepto.js"></script>
 <script src="app.min.js"></script>

@@ -584,18 +584,15 @@
 
       App.controller('page5', function (page) {
         $(page).find('.send-service').clickable().on('click', function () {
-         if($(".fNameVal").val() != null && $(".fNameVal").val() !== " " 
-   && $(".lNameVal").val() != null && $(".lNameVal").val() != " " 
-   && $(".phoneVal").val() != null && $(".phoneVal").val() != " " 
-   && $(".emailVal").val() != null && $(".emailVal").val() != " " 
-   && $(".passwordVal").val() != null && $(".passwordVal").val() != " "
-   && $(".addressVal").val() != null && $(".addressVal").val() != " " 
-   && $(".cityVal").val() != null && $(".cityVal").val() != " " 
-   && $(".stateVal").val() != null && $(".stateVal").val() != " " 
-   && $(".zipVal").val() != null && $(".zipVal").val() !== " " 
-   && $("input[name='userTypeVal']:checked").val() != null && $("input[name='userTypeVal']:checked").val() != " " 
+         if($(".servicename").val() != null && $(".servicename").val() !== " " 
+   && $(".dateVal").val() != null && $(".dateVal").val() != " " 
+   && $(".fromVal").val() != null && $(".fromVal").val() != " " 
+   && $(".toVal").val() != null && $(".toVal").val() != " " 
+   && $("input[name='servicetype']:checked").val() != null && $("input[name='servicetype']:checked").val() != " " 
    ){
      console.log("add service btn ok");
+     console.log($(".servicename").val());
+     console.log
    }
 
 

@@ -407,7 +407,12 @@
         </div>
         
    
-  
+          <div class="app-section">
+            <div class="app-button" id="registerBtn" data-target="page7">Search Services</div>
+          </div>
+          <div class="app-section">
+              <div class="app-button" id="registerBtn" data-target="page8">Contractions Timer</div>
+          </div>
           <div class="app-section" id="social-media">
         
             <a href='https://www.twitter.com/'><img src='images/twitter.png' class="center"></a>  <a href='https://www.facebook.com/'><img src='images/facebook.png' class="center"></a>
@@ -417,6 +422,47 @@
       </div> 
       </div>
 
+    <!-- Search services page 7 -->
+     
+     <div class="app-page" data-page="page7">
+        <div class="app-content">
+          <div class="app-topbar red">
+            <div class="app-button left red" data-back data-autotitle></div>
+            <div class="app-title">Search Services</div>
+          </div>
+          <br>
+          <br>
+
+
+        
+            <div class="app-section">
+              <p>Please select type of service</p>
+            </div>
+        
+            <div class="app-section">
+        
+              <input type="radio" name="servicetype" id="C" style="margin-top: 20px" value="c"> Course <br><br>
+              <input type="radio" name="servicetype" id="A" style="margin-bottom: 20px" value="a"> Doula & Maidwife Appointment<br>
+              
+        
+            </div>
+            <div class="app-section" >
+                <p>Enter City</p>
+                <input placeholder="kansas City"  id="form-input" class="app-input city">
+              </div>
+            <div class="app-section ">
+              <div class="app-button search-service" id="registerBtn" >Search</div>
+            </div>
+            <div class="app-section" id="search-result">
+
+            </div>
+  
+                  
+                
+        </div>
+      </div>
+    <!--  Timer page 8-->
+
     <!-- JavaScript Code -->
     <script src="zepto.js"></script>
     <script src="app.min.js"></script>
@@ -425,10 +471,19 @@
      $("#app-section-lunch-screen").ready(function() {
           if (typeof localStorage !== 'undefined') {
 
-            if (localStorage.getItem("login-status") !== null && localStorage.getItem("login-status") == 1) {
+            if (localStorage.getItem("login-status") != null && localStorage.getItem("login-status") == 1) {
 
               setTimeout(function() {
-                App.load('page4');
+                if (localStorage.getItem("user-usertype") == 'c'){
+
+                  App.load('page6');
+
+                }else{
+
+                  App.load('page4');
+
+                }
+                
               }, 4500);
 
             }else{
@@ -748,18 +803,6 @@
           }
         })
 
-
-
-
-
-
-
-
-
-
-
-
-
         $(page).find('#logoutBtn').clickable().on('click', function () { 
           if (typeof localStorage !== 'undefined') {
             localStorage.setItem("user-email", "");
@@ -786,7 +829,55 @@
         
          
 
+      App.controller('page7', function (page) {
+        $(page).find('.search-service').clickable().on('click', function () {
 
+            if($("input[name='servicetype']:checked").val() != null && $("input[name='servicetype']:checked").val() != " "){
+
+              if($(".city").val() != null && $(".city").val() !== " " ){
+
+                console.log($("input[name='servicetype']:checked").val());
+                console.log($(".city").val());
+                $.ajax({
+                type: 'GET',
+                url: 'https://www.mohzary.com/bearthworld/clientsearch.php?callback=response',
+                data: {email: localStorage.getItem("user-email"), service: $("input[name='servicetype']:checked").val(), city:$(".city").val()},
+                dataType: 'jsonp',
+                timeout: 1000,
+                context: $('body'),
+                success: function(data){
+                  console.log(data.success);
+                  $(page).find("#search-result").html(data.success);
+                },
+                error: function(xhr, type){
+ 
+                  console.log("There is an error!" + type.success);     
+                } 
+              })
+
+
+
+
+
+
+
+              }
+
+            }
+
+        })
+
+
+
+
+
+
+
+      });
+
+      App.controller('page8', function (page) {
+        
+      });
 
      
 

@@ -313,7 +313,11 @@
         <div class="app-section">
           <div class="app-button" id="registerBtn" data-target="page5">Add Services</div>
         </div>
-          
+        <div class="app-section" id="social-media">
+
+            <a href='https://www.twitter.com/'><img src='images/twitter.png' class="center"></a>  <a href='https://www.facebook.com/'><img src='images/facebook.png' class="center"></a>
+            
+        </div> 
 
       </div> 
     </div>
@@ -367,6 +371,49 @@
               
       </div>
     </div>
+           <!-- Client page 6 -->
+    <div class="app-page" data-page="page6" id="client">
+      <div class="app-content">
+        
+                <div class="app-topbar red">
+                  <div class="app-title">Home Page</div>
+                </div>
+                <br>
+                <br>
+                <div class="app-section" id='user-name'>
+                  
+               </div>
+               <div class="app-section">
+                  <p>My Courses</p>
+               </div>
+                  
+                <div  class="app-section" id="my-courses">
+                  
+                  
+                </div>
+                <div class="app-section">
+                    <p>My Appointments</p>
+                </div>
+                    
+                <div  class="app-section" id="my-appointments">
+                    
+                  
+                    
+                    
+                    
+                  
+                </div>
+                <div class="app-section">
+                  <div class="app-button" id="registerBtn" data-target="page5">Add Services</div>
+                </div>
+          <div class="app-section" id="social-media">
+        
+            <a href='https://www.twitter.com/'><img src='images/twitter.png' class="center"></a>  <a href='https://www.facebook.com/'><img src='images/facebook.png' class="center"></a>
+                    
+          </div> 
+        
+        </div> 
+      </div>
 
     <!-- JavaScript Code -->
     <script src="zepto.js"></script>
@@ -439,10 +486,7 @@
                       }
 
 
-                    }
-              
-
-        
+                    }social-media
         
                   },
                   error: function(xhr, type){
@@ -534,6 +578,7 @@
               if(localStorage.getItem("user-lname") != " " && localStorage.getItem("user-lname") != ""){
                 
                 $(page).find("#user-name").html("<p>Hi "+localStorage.getItem("user-fname")+" "+localStorage.getItem("user-lname"));
+                
               }
             }
 
@@ -584,20 +629,58 @@
 
       App.controller('page5', function (page) {
         $(page).find('.send-service').clickable().on('click', function () {
-         if($(".servicename").val() != null && $(".servicename").val() !== " " 
+
+          if($(".servicename").val() != null && $(".servicename").val() !== " " 
    && $(".dateVal").val() != null && $(".dateVal").val() != " " 
    && $(".fromVal").val() != null && $(".fromVal").val() != " " 
    && $(".toVal").val() != null && $(".toVal").val() != " " 
-   && $("input[name='servicetype']:checked").val() != null && $("input[name='servicetype']:checked").val() != " " 
-   ){
-     console.log("add service btn ok");
-     console.log($(".servicename").val());
-     console.log
+   && $("input[name='servicetype']:checked").val() != null && $("input[name='servicetype']:checked").val() != " " ){
+  
+
+     // to add service to our database:
+       $.ajax({
+             type: 'GET',
+             url: 'https://www.mohzary.com/bearthworld/addservice.php?callback=response',
+             data: {servicename: $(".servicename").val(),date: $(".dateVal").val(), from:$(".fromVal").val(), to:$(".toVal").val(), servicetype:$("input[name='servicetype']:checked").val(), userid: (localStorage.getItem("user-email"))},
+             dataType: 'jsonp',
+             timeout: 1000,
+             context: $('body'),
+             success: function(data){
+               if(data.success == "1" ){
+                   console.log("service is sent!");
+                   App.load('page4');
+                 
+
+
+               }else{
+
+                 console.log(data.success);
+
+               }
+         
+               
+   
+   
+             },
+             error: function(xhr, type){
+ 
+               console.log("There is an error!" + type.success);     
+   
+             } 
+           })   
+
+
    }
 
-
+        })
 
       });
+        
+         
+
+
+
+     
 
       try {
         App.load('home');

@@ -25,50 +25,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script>
-        var h1 = document.getElementsByTagName('h3')[0],
-            start = document.getElementById('start'),
-            stop = document.getElementById('stop'),
-            clear = document.getElementById('clear'),
-            seconds = 0, minutes = 0, hours = 0,
-            t;
 
-        function add() {
-            seconds++;
-            if (seconds >= 60) {
-                seconds = 0;
-                minutes++;
-                if (minutes >= 60) {
-                    minutes = 0;
-                    hours++;
-                }
-            }
-
-            h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-
-            timer();
-        }
-        function timer() {
-            t = setTimeout(add, 1000);
-        }
-        timer();
-
-
-        /* Start button */
-        start.onclick = timer;
-
-        /* Stop button */
-        stop.onclick = function() {
-            clearTimeout(t);
-        }
-
-        /* Clear button */
-        clear.onclick = function() {
-            h1.textContent = "00:00:00";
-            seconds = 0; minutes = 0; hours = 0;
-        }
-
-    </script>
 </head>
 <body>
 
@@ -170,148 +127,35 @@
 
         <div class="row well row-centered">
             <div class="col-md-offset-3 col-md-6">
-                <h3 class="col-centered row-centered stopwatch"></h3>
-                <ul class="results"></ul>
 
 
 
 
                 <div class="row well row-centered">
-            <div class="col-md-offset-5 col-md-6">
-                <h2 class="btn btn-danger btn-lg center-block" onClick="stopwatch.start();">START</h2>
-
-            </div>
-
-            <div class="col-md-offset-5 col-md-6">
-                <h2 class="btn btn-info btn-lg center-block" onClick="stopwatch.stop();">STOP</h2>
-
-            </div>
-
-            <div class="col-md-offset-5 col-md-6">
-                <h2 class="btn btn-secondary btn-lg center-block" onClick="stopwatch.restart();">RESET</h2>
-
-            </div>
-
-            <div class="row well row-centered stopwatch"></div>
-            <ul class="results"></ul>
-
-            <script>
-
-                function resetIt() {
-                    sec = 0;
-                    min = 0;
-                    hour = 0;
-                    if (document.getElementById("startButton").value == "Stop ") {
-                        document.getElementById("startButton").value = "Start";
-                        window.clearTimeout(SD);
-                    }
-                    document.getElementById("stopwatch").value = "00 : 00 : 00";
-                }
-
-            class Stopwatch {
-            constructor(display, results) {
-            this.running = false;
-            this.display = display;
-            this.results = results;
-            this.laps = [];
-            this.reset();
-            this.print(this.times);
-            }
-
-            reset() {
-
-            this.times = [0,0,0];
-
-            }
 
 
 
-            start() {
-            if (!this.time) this.time = performance.now();
-            if (!this.running) {
-            this.running = true;
-            requestAnimationFrame(this.step.bind(this));
-            }
-            }
 
-            lap() {
-            let times = this.times;
-            let li = document.createElement('li');
-            li.innerText = this.format(times);
-            this.results.appendChild(li);
-            }
+                    <div class="container">
+                        <h1 class="screen">
+        <span id="minutes">
+          00
+        </span>:<span id="seconds">
+          00
+        </span>:<span id="hundredths">
+          00
+        </span>
+                        </h1>
+                        <div class="buttons">
+                            <button id="start">START</button>
+                            <button id="stop">STOP</button>
+                            <button id="reset">RESET</button>
+                        </div>
+                    </div>
 
-            stop() {
-            this.running = false;
-            this.time = null;
-            }
+                    <script src="script.js"></script>
 
-            restart() {
-            if (!this.time) this.time = performance.now();
-            if (!this.running) {
-            this.running = true;
-            requestAnimationFrame(this.step.bind(this));
-            }
-            this.reset();
-            }
 
-            clear() {
-            clearChildren(this.results);
-            }
-
-            step(timestamp) {
-            if (!this.running) return;
-            this.calculate(timestamp);
-            this.time = timestamp;
-            this.print();
-            requestAnimationFrame(this.step.bind(this));
-            }
-
-            calculate(timestamp) {
-            var diff = timestamp - this.time;
-            // Hundredths of a second are 100 ms
-            this.times[2] += diff / 10;
-            // Seconds are 100 hundredths of a second
-            if (this.times[2] >= 100) {
-            this.times[1] += 1;
-            this.times[2] -= 100;
-            }
-            // Minutes are 60 seconds
-            if (this.times[1] >= 60) {
-            this.times[0] += 1;
-            this.times[1] -= 60;
-            }
-            }
-
-            print() {
-            this.display.innerText = this.format(this.times);
-            }
-
-            format(times) {
-            return `\
-            ${pad0(times[0], 2)}:\
-            ${pad0(times[1], 2)}:\
-            ${pad0(Math.floor(times[2]), 2)}`;
-            }
-            }
-
-            function pad0(value, count) {
-            var result = value.toString();
-            for (; result.length < count; --count)
-            result = '0' + result;
-            return result;
-            }
-
-            function clearChildren(node) {
-            while (node.lastChild)
-            node.removeChild(node.lastChild);
-            }
-
-            let stopwatch = new Stopwatch(
-            document.querySelector('.stopwatch'),
-            document.querySelector('.results'));
-
-            </script>
 
 
 

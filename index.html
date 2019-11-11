@@ -287,20 +287,16 @@
         </div>
         <br>
         <br>
+        <div class="app-section" id='user-name'>
+          
+       </div>
        <div class="app-section">
-          <p>My patients</p>
+          <p>My Courses</p>
        </div>
           
-        <div  class="app-section">
+        <div  class="app-section" id="my-courses">
           
-          <ul class="app-list" >
           
-            <label>List of current patients: </label>
-            <li>Dogs</li>
-            <li>Cats</li>
-            <li>Apples</li>
-            <li>Oranges</li>
-          </ul>
         </div>
         <div class="app-section">
             <p>My Appointments</p>
@@ -340,7 +336,7 @@
         </div>
         <div class="app-section" >
       
-          <input type="date" id="form-input"  class="app-input data">
+          <input type="date" id="form-input"  class="app-input dateVal">
       
         </div>
         <div class="app-section">
@@ -348,8 +344,8 @@
         </div>
         <div class="app-section" >
       
-          <p>From:</p><input type="time" id="form-input" class="app-input from" value="12:00">
-          <p>To:</p><input type="time" id="form-input" class="app-input to" value="12:00">
+          <p>From:</p><input type="time" id="form-input" class="app-input fromVal" value="12:00">
+          <p>To:</p><input type="time" id="form-input" class="app-input toVal" value="12:00">
       
         </div>
       
@@ -359,12 +355,12 @@
       
           <div class="app-section">
       
-            <input type="radio" name="ToS" id="C" style="margin-top: 20px" value="c"> Course <br><br>
-            <input type="radio" name="ToS" id="A" style="margin-bottom: 20px" value="a"> Appointment<br>
+            <input type="radio" name="servicetype" id="C" style="margin-top: 20px" value="c"> Course <br><br>
+            <input type="radio" name="servicetype" id="A" style="margin-bottom: 20px" value="a"> Appointment<br>
       
           </div>
           <div class="app-section ">
-            <div class="app-button send-service" id="registerBtn" >Make a service</div>
+            <div class="app-button send-service" id="registerBtn" >Send a service</div>
           </div>
 
                 
@@ -534,6 +530,12 @@
         // to get Doula maid wife appts. from server and dispaly them in app
         $("#doula-maidwife").ready(function() {
           if (typeof localStorage != 'undefined') {
+            if(localStorage.getItem("user-fname") != " " && localStorage.getItem("user-fname") != ""){
+              if(localStorage.getItem("user-lname") != " " && localStorage.getItem("user-lname") != ""){
+                
+                $(page).find("#user-name").html("<p>Hi "+localStorage.getItem("user-fname")+" "+localStorage.getItem("user-lname"));
+              }
+            }
 
             if(localStorage.getItem("user-email") != " " && localStorage.getItem("user-email") != null){
               $.ajax({
@@ -552,20 +554,51 @@
                   console.log("There is an error!" + type.success);     
                 } 
               })
+            }
+            if(localStorage.getItem("user-email") != " " && localStorage.getItem("user-email") != null){
+              $.ajax({
+                type: 'GET',
+                url: 'https://www.mohzary.com/bearthworld/courses.php?callback=response',
+                data: {email: localStorage.getItem("user-email")},
+                dataType: 'jsonp',
+                timeout: 1000,
+                context: $('body'),
+                success: function(data){
+                  console.log(data.success);
+                  $(page).find("#my-courses").html(data.success);
+                },
+                error: function(xhr, type){
+ 
+                  console.log("There is an error!" + type.success);     
+                } 
+              })              
             }  
           }
         });
         //// End to get Doula maid wife appts. from server and dispaly them in app
+        //to get all courses made by doula or maidwife
+        
 
 
       });
 
       App.controller('page5', function (page) {
-        $(page).find('#backBtn').clickable().on('click', function () { 
+        $(page).find('.send-service').clickable().on('click', function () {
+         if($(".fNameVal").val() != null && $(".fNameVal").val() !== " " 
+   && $(".lNameVal").val() != null && $(".lNameVal").val() != " " 
+   && $(".phoneVal").val() != null && $(".phoneVal").val() != " " 
+   && $(".emailVal").val() != null && $(".emailVal").val() != " " 
+   && $(".passwordVal").val() != null && $(".passwordVal").val() != " "
+   && $(".addressVal").val() != null && $(".addressVal").val() != " " 
+   && $(".cityVal").val() != null && $(".cityVal").val() != " " 
+   && $(".stateVal").val() != null && $(".stateVal").val() != " " 
+   && $(".zipVal").val() != null && $(".zipVal").val() !== " " 
+   && $("input[name='userTypeVal']:checked").val() != null && $("input[name='userTypeVal']:checked").val() != " " 
+   ){
+     console.log("add service btn ok");
+   }
 
-          App.load('page3');
 
-        });
 
       });
 

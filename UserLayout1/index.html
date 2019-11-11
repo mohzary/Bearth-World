@@ -4,7 +4,7 @@
   <title>My App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="app.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
   <style>
     /* TODO */
   </style>
@@ -19,7 +19,7 @@
 
 
     <div class="app-section">
-      <h1>Welcome Jane Doe</h1>
+      <h5>Welcome Jane Doe</h5>
 
       <p>Your Expected Delivery Due Date is <b>Dec 27, 2019!</b></p>
 
@@ -53,14 +53,14 @@
     </div>
 
     <div class="app-section">
-      <h4>My Courses</h4>
+      <p><b>My Courses</b></p>
       <ul class = "app-list">
         <li >Introduction to Pre-Natal Care</li>
 
       </ul>
     </div>
     <div class="app-section">
-      <h4>My Appointments</h4>
+      <p><b>My Appointments</b></p>
       <table  >
         <thead>
         <tr>
@@ -86,14 +86,14 @@
     <div class="app-section">
 
       <div class="">
-        <h4>My Doula</h4>
+        <p><b>My Doula</b></p>
         <ul class="app-list">
           <li>Ms. Tiffany Johnson - (816)444-9980</li>
         </ul>
       </div>
 
       <div class="">
-        <h4>My Midwife</h4>
+        <p><b>My Midwife</b></p>
         <ul class="app-list">
           <li>Mrs. Henderson Jackson - (816)342-5600</li>
         </ul>
@@ -113,30 +113,30 @@
       </div></div>
     <div class="">
       <div class="">
-        <h3 class="app-section "><time style="text-align: center; ">00:00:00</time></h3>
+        <h4 class="app-section "><time style="text-align: center; ">00:00:00</time></h4>
 
 
-          <div class="">
-            <div class="app-section">
-              <h2 class="app-button">START</h2>
-
-            </div>
-
-            <div class="app-section">
-              <h2 class="app-button">STOP</h2>
-
-            </div>
-
-            <div class="app-section">
-              <h2 class="app-button">RESET</h2>
-
-            </div>
-
+        <div class="">
+          <div class="app-section">
+            <h3 class="app-button">START</h3>
 
           </div>
 
+          <div class="app-section">
+            <h3 class="app-button">STOP</h3>
+
+          </div>
+
+          <div class="app-section">
+            <h3 class="app-button">RESET</h3>
+
+          </div>
+
+
+        </div>
+
         <div class="app-section">
-          <h5>Contractions History</h5>
+          <p><b>Contractions History</b></p>
           <div class="">
             <table class="">
               <thead>
@@ -169,19 +169,20 @@
 
 
   </div>
+</div>
 
 
 <div class="app-page" data-page="page2">
   <div class="app-topbar dark-blue">
     <div class="app-button left" data-back data-autotitle></div>
-    <div class="app-title">Page 2</div>
+    <div class="app-title">Search</div>
   </div>
   <div class="app-content">
 
 
 
     <div class="app-section">
-      <h1>Appointment Schedule & Course Signup Screen</h1>
+      <p><b>Appointment Schedule & Course Signup Screen</b></p>
 
     </div>
 
@@ -193,29 +194,27 @@
     </div>
     <div class="app-section">
       <label class="">
-        <input type="radio" class="" name="optradio"> Doula
+        <input type="radio" id="d" class="" name="optradio"> Doula
       </label>
 
       <label class="">
-        <input type="radio" class="" name="optradio"> MidWife
+        <input type="radio" id="m" class="" name="optradio"> MidWife
       </label>
       <label class="app-section ">
-        <input type="radio" class="" name="optradio"> Both
+        <input type="radio" id="b" class="" name="optradio"> Both
       </label>
     </div>
     <div class="app-section">
-      <input class="app-input no-icon-android" type="search"placeholder="Enter Zip Code">
+      <input class="app-input no-icon-android" id="zipCode" type="search"placeholder="Enter Zip Code">
 
     </div>
 
     <div class="app-section">
-      <div class="app-button" >Search</div>
+      <div class="app-button" id="searchButton" >Search</div>
     </div>
-
 
 
   </div>
-</div>
 </div>
 
 <script src="zepto.js"></script>
@@ -226,6 +225,85 @@
   });
 
   App.controller('page2', function (page) {
+
+    $(page).find('#searchButton').clickable().on('click', function () {
+      var type;
+      if ($('#d').prop('checked'))
+        type = 'D';
+
+      else if ($('#m').prop('checked'))
+        type = 'M';
+      else
+        type = 'B';
+
+      var zip=$('#zipCode').val();
+
+      if(true){
+        $.ajax({
+          type: 'GET',
+          url: 'Search.php',
+          data: { Type: type,Zip:zip},
+          dataType: 'jsonp',
+          timeout: 1000,
+          context: $('body'),
+          success: function(data){
+            console.log(data.success);
+            //
+            // d
+            // if(data.success.length === 12 ){
+            //   if (typeof localStorage != 'undefined') {
+            //
+            //     localStorage.setItem("user-email", data.success[0]);
+            //     localStorage.setItem("user-password", data.success[1]);
+            //     localStorage.setItem("user-fname", data.success[2]);
+            //     localStorage.setItem("user-lname", data.success[3]);
+            //     localStorage.setItem("user-address", data.success[4]);
+            //     localStorage.setItem("user-city", data.success[5]);
+            //     localStorage.setItem("user-state", data.success[6]);
+            //     localStorage.setItem("user-zipcode", data.success[7]);
+            //     localStorage.setItem("user-facebook", data.success[8]);
+            //     localStorage.setItem("user-twitter", data.success[9]);
+            //     localStorage.setItem("user-usertype", data.success[10]);
+            //     localStorage.setItem("user-phone", data.success[11]);
+            //     localStorage.setItem("login-status", 1);
+            //
+            //
+            //     if(localStorage.getItem("user-usertype")=="d"){
+            //       App.load('page4');
+            //
+            //     }else if(localStorage.getItem("user-usertype")=="m"){
+            //       App.load('page4');
+            //
+            //     }else if(localStorage.getItem("user-usertype") == "c"){
+            //       App.load('page6');
+            //
+            //     }
+            //
+            //
+            //   }
+            //
+            //
+            // }
+            //
+            //
+
+
+          },
+          error: function(xhr, type){
+
+            console.log("There is an error!" + type);
+
+          }
+        })
+      }else{
+        console.log("please enter all information");
+      }
+    });
+
+    $(page).find('#registerBtn').clickable().on('click', function () {
+      App.load('page3');
+
+    });
     // put stuff here
   });
 

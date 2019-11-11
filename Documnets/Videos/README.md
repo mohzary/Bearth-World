@@ -1,1 +1,1 @@
-[![Watch the video](https://st2.depositphotos.com/5394392/11901/v/950/depositphotos_119010688-stock-illustration-play-icon-audio-or-video.jpg)](https://youtu.be/vt5fpE0bzSY)
+[![Watch the video](https://store-images.s-microsoft.com/image/apps.19180.13510798882289269.9a2402be-acfb-4fe1-94ea-6d129827a1ab.eb5eeab5-0124-4a71-ac79-ed2ffa4b9494?w=672&h=378&q=80&mode=letterbox&background=%23FFE4E4E4&format=jpg)](https://youtu.be/vt5fpE0bzSY)

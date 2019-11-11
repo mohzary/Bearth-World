@@ -53,7 +53,7 @@ if(array_key_exists('callback', $_GET)){
               return  $result['success'] = "Error (4): Could not reterive your data. Please try agin later.";
            }else{
          while ($row = mysqli_fetch_assoc($qresult)){
-                   $query2 = " SELECT * FROM users WHERE Email = '".$row['For']."'";
+                   $query2 = " SELECT * FROM users WHERE Email = '".$row['AFor']."'";
                    $qresult2 = mysqli_query($link, $query2);
                    if(!$qresult2 || mysqli_num_rows($qresult2)== 0){
 
@@ -61,19 +61,21 @@ if(array_key_exists('callback', $_GET)){
                    }else{
                         while ($row2 = mysqli_fetch_assoc($qresult2)){
                             
-                            $apptsListData .= "<ul class='app-list'><label>".$row['Name']."</label><li>Client Name: ".$row2['FirstName']." ".$row2['LastName']."</li><li>Data: ". $row['Date']."</li> <li>From: ". $row['From']."</li> <li>To: ". $row['To']."</li><li>Contact: ". $row2['PhoneNumber']."</li> </ul>";
+                            $apptsListData .= "<ul class='app-list'><label>".$row['AName']."</label><li>Client Name: ".$row2['FirstName']." ".$row2['LastName']."</li><li>Data: ". $row['ADate']."</li> <li>From: ". $row['AFrom']."</li> <li>To: ". $row['TTo']."</li><li>Contact: ". $row2['PhoneNumber']."</li> </ul>";
                             
                            
                              
                           
                        }
+                       
 
                    }
+                   
                   
                  
           
          }
-      return  $result['success'] = $apptsListData;
+         return  $result['success'] = $apptsListData;
           
          }
 

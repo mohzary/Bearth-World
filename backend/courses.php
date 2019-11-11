@@ -53,15 +53,17 @@ if(array_key_exists('callback', $_GET)){
               return  $result['success'] = "Error (4): Could not reterive your data. Please try agin later.";
            }else{
             while ($row = mysqli_fetch_assoc($qresult)){               
-                $coursesListData .= "<ul class='app-list'><label>".$row['Name']."</label><li>Data: ". $row['Date']."</li> <li>From: ". $row['From']."</li> <li>To: ". $row['To']."</li> </ul>";
+                $coursesListData .= "<ul class='app-list'><label>".$row['CName']."</label><li>Data: ". $row['CDate']."</li> <li>From: ". $row['TFrom']."</li> <li>To: ". $row['TTo']."</li> </ul>";
             }
+
+            return  $result['success'] = $coursesListData;
 
             }
                   
                  
           
          }
-      return  $result['success'] = $coursesListData;
+      
           
      }
 

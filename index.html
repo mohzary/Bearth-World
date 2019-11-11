@@ -284,6 +284,7 @@
 
         <div class="app-topbar red">
           <div class="app-title">Home Page</div>
+          <div class="app-button right red" id="logoutBtn"><img src="images/logout.png" id="topbar-btn"></div>
         </div>
         <br>
         <br>
@@ -315,7 +316,7 @@
         </div>
         <div class="app-section" id="social-media">
 
-            <a href='https://www.twitter.com/'><img src='images/twitter.png' class="center"></a>  <a href='https://www.facebook.com/'><img src='images/facebook.png' class="center"></a>
+            <a href='https://www.twitter.com/'><img src='images/twitter.png' class="center"></a>  <a href='https://www.facebook.com/'><img src='images/facebook.png' class="center"></a> 
             
         </div> 
 
@@ -374,45 +375,46 @@
            <!-- Client page 6 -->
     <div class="app-page" data-page="page6" id="client">
       <div class="app-content">
+          <div class="app-topbar red">
+            <div class="app-title">Home Page</div>
+            <div class="app-button right red" id="logoutBtn"><img src="images/logout.png" id="topbar-btn"></div>
+          </div>
+
+          <br>
+        <br>
+        <div class="app-section" id='user-name'>
+          
+       </div>
+       <div class="app-section">
+          <p>My Courses</p>
+       </div>
+          
+        <div  class="app-section" id="my-courses">
+          
+          
+        </div>
+        <div class="app-section">
+            <p>My Appointments</p>
+        </div>
+            
+        <div  class="app-section" id="my-appointments">
+            
+          
+            
+            
+            
+          
+        </div>
         
-                <div class="app-topbar red">
-                  <div class="app-title">Home Page</div>
-                </div>
-                <br>
-                <br>
-                <div class="app-section" id='user-name'>
-                  
-               </div>
-               <div class="app-section">
-                  <p>My Courses</p>
-               </div>
-                  
-                <div  class="app-section" id="my-courses">
-                  
-                  
-                </div>
-                <div class="app-section">
-                    <p>My Appointments</p>
-                </div>
-                    
-                <div  class="app-section" id="my-appointments">
-                    
-                  
-                    
-                    
-                    
-                  
-                </div>
-                <div class="app-section">
-                  <div class="app-button" id="registerBtn" data-target="page5">Add Services</div>
-                </div>
+   
+  
           <div class="app-section" id="social-media">
         
             <a href='https://www.twitter.com/'><img src='images/twitter.png' class="center"></a>  <a href='https://www.facebook.com/'><img src='images/facebook.png' class="center"></a>
                     
           </div> 
         
-        </div> 
+      </div> 
       </div>
 
     <!-- JavaScript Code -->
@@ -623,7 +625,24 @@
         //// End to get Doula maid wife appts. from server and dispaly them in app
         //to get all courses made by doula or maidwife
         
-
+        $(page).find('#logoutBtn').clickable().on('click', function () { 
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem("user-email", "");
+                        localStorage.setItem("user-password", "");
+                        localStorage.setItem("user-fname", "");
+                        localStorage.setItem("user-lname", "");
+                        localStorage.setItem("user-address", "");
+                        localStorage.setItem("user-city", "");
+                        localStorage.setItem("user-state", "");
+                        localStorage.setItem("user-zipcode", "");
+                        localStorage.setItem("user-facebook", "");
+                        localStorage.setItem("user-twitter", "");
+                        localStorage.setItem("user-usertype", "");
+                        localStorage.setItem("user-phone", "");
+                        localStorage.setItem("login-status", 0);            
+              App.load('home');
+          }
+        });
 
       });
 
@@ -673,6 +692,95 @@
    }
 
         })
+
+      });
+
+
+      //JavaScript for page 6 
+      App.controller('page6', function (page) {
+
+        $("#client").ready(function() {
+          if (typeof localStorage != 'undefined') {
+            if(localStorage.getItem("user-fname") != " " && localStorage.getItem("user-fname") != ""){
+              if(localStorage.getItem("user-lname") != " " && localStorage.getItem("user-lname") != ""){
+                
+                $(page).find("#user-name").html("<p>Hi "+localStorage.getItem("user-fname")+" "+localStorage.getItem("user-lname"));
+                
+              }
+            }
+
+            if(localStorage.getItem("user-email") != " " && localStorage.getItem("user-email") != null){
+              $.ajax({
+                type: 'GET',
+                url: 'https://www.mohzary.com/bearthworld/clientappts.php?callback=response',
+                data: {email: localStorage.getItem("user-email")},
+                dataType: 'jsonp',
+                timeout: 1000,
+                context: $('body'),
+                success: function(data){
+                  console.log(data.success);
+                  $(page).find("#my-appointments").html(data.success);
+                },
+                error: function(xhr, type){
+ 
+                  console.log("There is an error!" + type.success);     
+                } 
+              })
+            }
+            if(localStorage.getItem("user-email") != " " && localStorage.getItem("user-email") != null){
+              $.ajax({
+                type: 'GET',
+                url: 'https://www.mohzary.com/bearthworld/clientcourses.php?callback=response',
+                data: {email: localStorage.getItem("user-email")},
+                dataType: 'jsonp',
+                timeout: 1000,
+                context: $('body'),
+                success: function(data){
+                  console.log(data.success);
+                  $(page).find("#my-courses").html(data.success);
+                },
+                error: function(xhr, type){
+ 
+                  console.log("There is an error!" + type.success);     
+                } 
+              })
+            }
+          }
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(page).find('#logoutBtn').clickable().on('click', function () { 
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem("user-email", "");
+                        localStorage.setItem("user-password", "");
+                        localStorage.setItem("user-fname", "");
+                        localStorage.setItem("user-lname", "");
+                        localStorage.setItem("user-address", "");
+                        localStorage.setItem("user-city", "");
+                        localStorage.setItem("user-state", "");
+                        localStorage.setItem("user-zipcode", "");
+                        localStorage.setItem("user-facebook", "");
+                        localStorage.setItem("user-twitter", "");
+                        localStorage.setItem("user-usertype", "");
+                        localStorage.setItem("user-phone", "");
+                        localStorage.setItem("login-status", 0);            
+              App.load('home');
+          }
+        });
+
+
+
 
       });
         
